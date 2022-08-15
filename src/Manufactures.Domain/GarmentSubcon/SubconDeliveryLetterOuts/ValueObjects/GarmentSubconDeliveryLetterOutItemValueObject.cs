@@ -31,6 +31,9 @@ namespace Manufactures.Domain.GarmentSubcon.SubconDeliveryLetterOuts.ValueObject
         public string SubconNo { get; set; }
 
         #endregion
+        //public Uom UomSatuan { get; set; }
+        public string UomSatuanUnit { get; set; }
+        public int QtyPacking { get; set; }
         public GarmentSubconDeliveryLetterOutItemValueObject()
         {
         }

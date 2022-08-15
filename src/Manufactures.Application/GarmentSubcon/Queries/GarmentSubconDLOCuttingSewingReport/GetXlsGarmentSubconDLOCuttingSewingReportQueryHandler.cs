@@ -110,11 +110,10 @@ namespace Manufactures.Application.GarmentSubcon.Queries.GarmentSubconDLOCutting
         {
             var QueryUEN = (from a in garmentSubconDeliveryLetterOutRepository.Query
                            join b in garmentSubconDeliveryLetterOutItemRepository.Query on a.Identity equals b.SubconDeliveryLetterOutId
-                            //where a.Deleted == false && b.Deleted == false
-                            where
-                            a.DLDate.AddHours(7).Date >= request.dateFrom
-                            && a.DLDate.AddHours(7).Date <= request.dateTo.Date && a.UENId != null
-                            && a.ContractType == "SUBCON GARMENT" && a.SubconCategory == "SUBCON CUTTING SEWING"
+                           where a.Deleted == false && b.Deleted == false
+                           && a.DLDate.AddHours(7).Date >= request.dateFrom
+                           && a.DLDate.AddHours(7).Date <= request.dateTo.Date && a.UENId != null
+                           && a.ContractType == "SUBCON GARMENT" && a.SubconCategory == "SUBCON CUTTING SEWING"
                            select a.UENId).Distinct();
             List<int> _uen = new List<int>();
             foreach (var item in QueryUEN)
@@ -125,9 +124,8 @@ namespace Manufactures.Application.GarmentSubcon.Queries.GarmentSubconDLOCutting
 
             var Query = (from a in garmentSubconDeliveryLetterOutRepository.Query
                          join b in garmentSubconDeliveryLetterOutItemRepository.Query on a.Identity equals b.SubconDeliveryLetterOutId
-                         //where a.Deleted == false && b.Deleted == false
-                         where
-                         a.DLDate.AddHours(7).Date >= request.dateFrom
+                         where a.Deleted == false && b.Deleted == false
+                         && a.DLDate.AddHours(7).Date >= request.dateFrom
                          && a.DLDate.AddHours(7).Date <= request.dateTo.Date
                          //&& a.ContractType == "SUBCON GARMENT" && a.SubconCategory == "SUBCON CUTTING SEWING"                   
                          select new monitoringViewTemp
@@ -152,7 +150,7 @@ namespace Manufactures.Application.GarmentSubcon.Queries.GarmentSubconDLOCutting
                              FabricType = (from UEN in gmtExpNoteReport.data where UEN.UENId == a.UENId select UEN.FabricType).FirstOrDefault(),
                              QtyUEN = (from UEN in gmtExpNoteReport.data where UEN.UENId == a.UENId select UEN.Quntity).FirstOrDefault(),
                              UomUEN = (from UEN in gmtExpNoteReport.data where UEN.UENId == a.UENId select UEN.UOMUnit).FirstOrDefault(),
-                         }).ToList();
+                         }).ToList().OrderBy(x => x.DLNo).ThenBy(x => x.UENNo);
 
                           //.GroupBy(x => new {
                           //    x.DLType,

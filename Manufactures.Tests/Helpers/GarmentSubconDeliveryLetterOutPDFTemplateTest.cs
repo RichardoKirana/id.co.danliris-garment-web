@@ -19,7 +19,7 @@ namespace Manufactures.Tests.Helpers
             Guid id = Guid.NewGuid();
             var dto = new GarmentSubconDeliveryLetterOutDto(new GarmentSubconDeliveryLetterOut(id, null, null, id, "", "", DateTimeOffset.Now, 1, "", "", 1, "", false, "", "SUBCON CUTTING SEWING"));
 
-            var garmentSubconDLOutItem = new GarmentSubconDeliveryLetterOutItem(id, id, 1, new Domain.Shared.ValueObjects.ProductId(1), "code", "name", "remark", "color", 1, new Domain.Shared.ValueObjects.UomId(1), "unit", new Domain.Shared.ValueObjects.UomId(1), "unit", "fabType", new Guid(), "", "", "");
+            var garmentSubconDLOutItem = new GarmentSubconDeliveryLetterOutItem(id, id, 1, new Domain.Shared.ValueObjects.ProductId(1), "code", "name", "remark", "color", 1, new Domain.Shared.ValueObjects.UomId(1), "unit", new Domain.Shared.ValueObjects.UomId(1), "unit", "fabType", new Guid(), "", "", "", "", 1);
             var items = new List<GarmentSubconDeliveryLetterOutItemDto>()
             {
                 new GarmentSubconDeliveryLetterOutItemDto(garmentSubconDLOutItem)
@@ -37,7 +37,7 @@ namespace Manufactures.Tests.Helpers
             Guid id = Guid.NewGuid();
             var dto = new GarmentSubconDeliveryLetterOutDto(new GarmentSubconDeliveryLetterOut(id, null, null, id, "", "", DateTimeOffset.Now, 1, "", "", 1, "", false, "", "SUBCON JASA KOMPONEN"));
 
-            var garmentSubconDLOutItem = new GarmentSubconDeliveryLetterOutItem(id, id, 1, new Domain.Shared.ValueObjects.ProductId(1), "code", "name", "remark", "color", 1, new Domain.Shared.ValueObjects.UomId(1), "unit", new Domain.Shared.ValueObjects.UomId(1), "unit", "fabType", new Guid(), "", "", "22PL0012");
+            var garmentSubconDLOutItem = new GarmentSubconDeliveryLetterOutItem(id, id, 1, new Domain.Shared.ValueObjects.ProductId(1), "code", "name", "remark", "color", 1, new Domain.Shared.ValueObjects.UomId(1), "unit", new Domain.Shared.ValueObjects.UomId(1), "unit", "fabType", new Guid(), "", "", "22PL0012", "", 1);
             var items = new List<GarmentSubconDeliveryLetterOutItemDto>()
             {
                 new GarmentSubconDeliveryLetterOutItemDto(garmentSubconDLOutItem)
@@ -56,7 +56,7 @@ namespace Manufactures.Tests.Helpers
             Guid IdSewing = Guid.NewGuid();
             var dto = new GarmentSubconDeliveryLetterOutDto(new GarmentSubconDeliveryLetterOut(id, null, null, id, "", "", DateTimeOffset.Now, 1, "", "", 1, "", false, "", "SUBCON JASA GARMENT WASH"));
 
-            var garmentSubconDLOutItem = new GarmentSubconDeliveryLetterOutItem(id, id, 1, new Domain.Shared.ValueObjects.ProductId(1), "code", "name", "remark", "color", 1, new Domain.Shared.ValueObjects.UomId(1), "unit", new Domain.Shared.ValueObjects.UomId(1), "unit", "fabType", new Guid(), "", "", "");
+            var garmentSubconDLOutItem = new GarmentSubconDeliveryLetterOutItem(id, id, 1, new Domain.Shared.ValueObjects.ProductId(1), "code", "name", "remark", "color", 1, new Domain.Shared.ValueObjects.UomId(1), "unit", new Domain.Shared.ValueObjects.UomId(1), "unit", "fabType", new Guid(), "", "", "", "", 1);
             GarmentSubconDeliveryLetterOutItemDto itemDto = new GarmentSubconDeliveryLetterOutItemDto(garmentSubconDLOutItem);
             var items = new List<GarmentSubconDeliveryLetterOutItemDto>()
             {
@@ -88,7 +88,7 @@ namespace Manufactures.Tests.Helpers
             Guid id = Guid.NewGuid();
             var dto = new GarmentSubconDeliveryLetterOutDto(new GarmentSubconDeliveryLetterOut(id, null, null, id, "", "", DateTimeOffset.Now, 1, "", "", 1, "", false, "", "SUBCON BB FABRIC WASH/PRINT"));
 
-            var garmentSubconDLOutItem = new GarmentSubconDeliveryLetterOutItem(id, id, 1, new Domain.Shared.ValueObjects.ProductId(1), "code", "name", "remark", "color", 1, new Domain.Shared.ValueObjects.UomId(1), "unit", new Domain.Shared.ValueObjects.UomId(1), "unit", "fabType", new Guid(), "", "", "");
+            var garmentSubconDLOutItem = new GarmentSubconDeliveryLetterOutItem(id, id, 1, new Domain.Shared.ValueObjects.ProductId(1), "code", "name", "remark", "color", 1, new Domain.Shared.ValueObjects.UomId(1), "unit", new Domain.Shared.ValueObjects.UomId(1), "unit", "fabType", new Guid(), "", "", "", "", 1);
             var items = new List<GarmentSubconDeliveryLetterOutItemDto>()
             {
                 new GarmentSubconDeliveryLetterOutItemDto(garmentSubconDLOutItem)
@@ -106,7 +106,7 @@ namespace Manufactures.Tests.Helpers
             Guid id = Guid.NewGuid();
             var dto = new GarmentSubconDeliveryLetterOutDto(new GarmentSubconDeliveryLetterOut(id, null, null, id, "", "", DateTimeOffset.Now, 1, "", "", 1, "", false, "", "SUBCON SEWING"));
             
-            var garmentSubconDLOutItem = new GarmentSubconDeliveryLetterOutItem(id, id, 1, new Domain.Shared.ValueObjects.ProductId(1), "code", "name", "remark", "color", 1, new Domain.Shared.ValueObjects.UomId(1), "unit", new Domain.Shared.ValueObjects.UomId(1), "unit", "fabType", new Guid(), "", "", "");
+            var garmentSubconDLOutItem = new GarmentSubconDeliveryLetterOutItem(id, id, 1, new Domain.Shared.ValueObjects.ProductId(1), "code", "name", "remark", "color", 1, new Domain.Shared.ValueObjects.UomId(1), "unit", new Domain.Shared.ValueObjects.UomId(1), "unit", "fabType", new Guid(), "", "", "", "", 1);
             GarmentSubconDeliveryLetterOutItemDto itemDto = new GarmentSubconDeliveryLetterOutItemDto(garmentSubconDLOutItem);
             var subconCuttingDto= new GarmentSubconCuttingOutDto(new GarmentSubconCuttingOut(id, "cutOutNo", "cuttingOutType", new Domain.Shared.ValueObjects.UnitDepartmentId(1), "unitFromCode", "unitFromName", DateTimeOffset.Now, "roNo", "article", new Domain.Shared.ValueObjects.GarmentComodityId(1), "comodityCode", "comodityName", 1, 1, "", false));
             var subconCuttingItem = new GarmentSubconCuttingOutItem(id, id, id, id, new Domain.Shared.ValueObjects.ProductId(1), "", "", "", 10);

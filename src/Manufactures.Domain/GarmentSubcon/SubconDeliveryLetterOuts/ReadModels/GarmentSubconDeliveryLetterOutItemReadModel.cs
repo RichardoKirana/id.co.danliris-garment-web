@@ -35,6 +35,9 @@ namespace Manufactures.Domain.GarmentSubcon.SubconDeliveryLetterOuts.ReadModels
         public string SubconNo { get; internal set; }
 
         #endregion
+        //public int UomSatuanId { get; internal set; }
+        public string UomSatuanUnit { get; internal set; }
+        public int QtyPacking { get; internal set; }
         public virtual GarmentSubconDeliveryLetterOutReadModel GarmentSubconDeliveryLetterOut { get; internal set; }
     }
 }

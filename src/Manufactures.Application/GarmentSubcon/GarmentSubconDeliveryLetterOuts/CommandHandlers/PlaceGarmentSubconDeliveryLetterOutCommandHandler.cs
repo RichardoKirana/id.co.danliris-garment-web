@@ -92,7 +92,10 @@ namespace Manufactures.Application.GarmentSubcon.GarmentSubconDeliveryLetterOuts
                     item.SubconId,
                     item.RONo,
                     item.POSerialNumber,
-                    item.SubconNo
+                    item.SubconNo,
+                    //new UomId(item.UomSatuan.Id),
+                    item.UomSatuanUnit,
+                    item.QtyPacking
                 );
                 if(request.SubconCategory=="SUBCON SEWING")
                 {

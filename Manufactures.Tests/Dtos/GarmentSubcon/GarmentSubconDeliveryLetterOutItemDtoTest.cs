@@ -13,7 +13,7 @@ namespace Manufactures.Tests.Dtos.GarmentSubcon
         public void should_Success_Instantiate()
         {
             Guid id = Guid.NewGuid();
-            var dto = new GarmentSubconDeliveryLetterOutItemDto(new GarmentSubconDeliveryLetterOutItem(id,new Guid(),1,new Domain.Shared.ValueObjects.ProductId(1),"code","name","remark","color",1,new Domain.Shared.ValueObjects.UomId(1),"unit", new Domain.Shared.ValueObjects.UomId(1), "unit", "fabType", new Guid(), "", "", ""));
+            var dto = new GarmentSubconDeliveryLetterOutItemDto(new GarmentSubconDeliveryLetterOutItem(id,new Guid(),1,new Domain.Shared.ValueObjects.ProductId(1),"code","name","remark","color",1,new Domain.Shared.ValueObjects.UomId(1),"unit", new Domain.Shared.ValueObjects.UomId(1), "unit", "fabType", new Guid(), "", "", "", "", 1));
 
             Assert.NotNull(dto.Product);
             Assert.NotNull(dto.Uom);

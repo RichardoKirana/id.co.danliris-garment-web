@@ -82,7 +82,7 @@ namespace Manufactures.Tests.Queries.GarmentSubcon.GarmentSubconDLOGarmentWash
                     .Setup(s => s.Query)
                     .Returns(new List<GarmentSubconDeliveryLetterOutItemReadModel>
                     {
-                    new GarmentSubconDeliveryLetterOutItem(guidSubconDLOItem,guidSubconDLO,1,new ProductId(1),"ProductCode","ProductName","ProductRemark","DesignColor",1,new UomId(1),"UomUnit", new UomId(1),"uomOutUnit","fabricType", guidSubconSewing, "roNo", "poSerialNumber", "SubconNo").GetReadModel()
+                    new GarmentSubconDeliveryLetterOutItem(guidSubconDLOItem,guidSubconDLO,1,new ProductId(1),"ProductCode","ProductName","ProductRemark","DesignColor",1,new UomId(1),"UomUnit", new UomId(1),"uomOutUnit","fabricType", guidSubconSewing, "roNo", "poSerialNumber", "SubconNo", "uomSatuanUnit", 1).GetReadModel()
                     }.AsQueryable());
 
             _mockgarmentSubconSewingRepository
@@ -144,7 +144,7 @@ namespace Manufactures.Tests.Queries.GarmentSubcon.GarmentSubconDLOGarmentWash
                     .Setup(s => s.Query)
                     .Returns(new List<GarmentSubconDeliveryLetterOutItemReadModel>
                     {
-                    new GarmentSubconDeliveryLetterOutItem(guidSubconDLOItem,guidSubconDLO,1,new ProductId(1),"ProductCode","ProductName","ProductRemark","DesignColor",1,new UomId(1),"UomUnit", new UomId(1),"uomOutUnit","fabricType", guidSubconSewing, "roNo", "poSerialNumber", "SubconNo").GetReadModel()
+                    new GarmentSubconDeliveryLetterOutItem(guidSubconDLOItem,guidSubconDLO,1,new ProductId(1),"ProductCode","ProductName","ProductRemark","DesignColor",1,new UomId(1),"UomUnit", new UomId(1),"uomOutUnit","fabricType", guidSubconSewing, "roNo", "poSerialNumber", "SubconNo", "uomSatuanUnit", 1).GetReadModel()
                     }.AsQueryable());
 
             _mockgarmentSubconSewingRepository

@@ -37,7 +37,10 @@ namespace Manufactures.Domain.GarmentSubcon.SubconDeliveryLetterOuts
         public string SubconNo { get; private set; }
 
         #endregion
-        public GarmentSubconDeliveryLetterOutItem(Guid identity, Guid subconDeliveryLetterOutId, int uENItemId, ProductId productId, string productCode, string productName, string productRemark, string designColor, double quantity, UomId uomId, string uomUnit, UomId uomOutId, string uomOutUnit, string fabricType, Guid subconId, string roNo, string poSerialNumber, string subconNo) : base(identity)
+        //public UomId UomSatuanId { get; private set; }
+        public string UomSatuanUnit { get; private set; }
+        public int QtyPacking { get; private set; }
+        public GarmentSubconDeliveryLetterOutItem(Guid identity, Guid subconDeliveryLetterOutId, int uENItemId, ProductId productId, string productCode, string productName, string productRemark, string designColor, double quantity, UomId uomId, string uomUnit, UomId uomOutId, string uomOutUnit, string fabricType, Guid subconId, string roNo, string poSerialNumber, string subconNo/*, UomId uomSatuanId*/, string uomSatuanUnit, int qtyPacking) : base(identity)
         {
             Identity = identity;
             SubconDeliveryLetterOutId = subconDeliveryLetterOutId;
@@ -57,6 +60,9 @@ namespace Manufactures.Domain.GarmentSubcon.SubconDeliveryLetterOuts
             RONo = roNo;
             POSerialNumber = poSerialNumber;
             SubconNo = subconNo;
+            //UomSatuanId = uomSatuanId;
+            UomSatuanUnit = uomSatuanUnit;
+            QtyPacking = qtyPacking;
 
             ReadModel = new GarmentSubconDeliveryLetterOutItemReadModel(Identity)
             {
@@ -76,7 +82,10 @@ namespace Manufactures.Domain.GarmentSubcon.SubconDeliveryLetterOuts
                 SubconId = SubconId,
                 RONo = RONo,
                 POSerialNumber = POSerialNumber,
-                SubconNo= SubconNo
+                SubconNo = SubconNo,
+                //UomSatuanId = UomSatuanId.Value,
+                UomSatuanUnit = UomSatuanUnit,
+                QtyPacking = QtyPacking
             };
 
             ReadModel.AddDomainEvent(new OnGarmentSubconDeliveryLetterOutPlaced(Identity));
@@ -101,6 +110,9 @@ namespace Manufactures.Domain.GarmentSubcon.SubconDeliveryLetterOuts
             RONo = readModel.RONo;
             SubconId = readModel.SubconId;
             SubconNo = readModel.SubconNo;
+            //UomSatuanId = new UomId(readModel.UomSatuanId);
+            UomSatuanUnit = readModel.UomSatuanUnit;
+            QtyPacking = readModel.QtyPacking;
         }
 
         public void Modify()

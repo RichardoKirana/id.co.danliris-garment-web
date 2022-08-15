@@ -99,8 +99,8 @@ namespace Manufactures.Tests.Queries.GarmentSubcon.GarmentSubconDLORawMaterial
                  .Setup(s => s.Query)
                 .Returns(new List<GarmentSubconDeliveryLetterOutItemReadModel>
                 {   
-                    new GarmentSubconDeliveryLetterOutItem(guidSubconDLOItem, guidSubconDLO, 1, new ProductId(1), "productCode", "productName", "productRemark", "designColor", 2, new UomId(1), "uomUnit", new UomId(1), "uomOutUnit", "fabricType", guidSubconShrinkagePanel, "roNo", "poSerialNumber", "subconNo").GetReadModel(),
-                    new GarmentSubconDeliveryLetterOutItem(guidSubconDLOItem, guidSubconDLO2, 1, new ProductId(1), "productCode", "productName", "productRemark", "designColor", 2, new UomId(1), "uomUnit", new UomId(1), "uomOutUnit", "fabricType", guidSubconShrinkagePanel, "roNo", "poSerialNumber", "subconNo").GetReadModel()
+                    new GarmentSubconDeliveryLetterOutItem(guidSubconDLOItem, guidSubconDLO, 1, new ProductId(1), "productCode", "productName", "productRemark", "designColor", 2, new UomId(1), "uomUnit", new UomId(1), "uomOutUnit", "fabricType", guidSubconShrinkagePanel, "roNo", "poSerialNumber", "subconNo", "uomSatuanUnit", 1).GetReadModel(),
+                    new GarmentSubconDeliveryLetterOutItem(guidSubconDLOItem, guidSubconDLO2, 1, new ProductId(1), "productCode", "productName", "productRemark", "designColor", 2, new UomId(1), "uomUnit", new UomId(1), "uomOutUnit", "fabricType", guidSubconShrinkagePanel, "roNo", "poSerialNumber", "subconNo", "uomSatuanUnit", 1).GetReadModel()
 
                 }.AsQueryable());
 
@@ -188,8 +188,8 @@ namespace Manufactures.Tests.Queries.GarmentSubcon.GarmentSubconDLORawMaterial
                  .Setup(s => s.Query)
                 .Returns(new List<GarmentSubconDeliveryLetterOutItemReadModel>
                 {
-                    new GarmentSubconDeliveryLetterOutItem(guidSubconDLOItem, guidSubconDLO, 1, new ProductId(1), "productCode", "productName", "productRemark", "designColor", 2, new UomId(1), "uomUnit", new UomId(1), "uomOutUnit", "fabricType", guidSubconShrinkagePanel, "roNo", "poSerialNumber", "subconNo").GetReadModel(),
-                    new GarmentSubconDeliveryLetterOutItem(guidSubconDLOItem, guidSubconDLO2, 1, new ProductId(1), "productCode", "productName", "productRemark", "designColor", 2, new UomId(1), "uomUnit", new UomId(1), "uomOutUnit", "fabricType", guidSubconShrinkagePanel, "roNo", "poSerialNumber", "subconNo").GetReadModel()
+                    new GarmentSubconDeliveryLetterOutItem(guidSubconDLOItem, guidSubconDLO, 1, new ProductId(1), "productCode", "productName", "productRemark", "designColor", 2, new UomId(1), "uomUnit", new UomId(1), "uomOutUnit", "fabricType", guidSubconShrinkagePanel, "roNo", "poSerialNumber", "subconNo", "uomSatuanUnit", 1).GetReadModel(),
+                    new GarmentSubconDeliveryLetterOutItem(guidSubconDLOItem, guidSubconDLO2, 1, new ProductId(1), "productCode", "productName", "productRemark", "designColor", 2, new UomId(1), "uomUnit", new UomId(1), "uomOutUnit", "fabricType", guidSubconShrinkagePanel, "roNo", "poSerialNumber", "subconNo", "uomSatuanUnit", 1).GetReadModel()
 
                 }.AsQueryable());
 

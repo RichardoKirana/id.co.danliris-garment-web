@@ -80,10 +80,9 @@ namespace Manufactures.Application.GarmentSubcon.Queries.GarmentSubconDLOCompone
                           join d in garmentServiceSubconCuttingItemRepository.Query on c.Identity equals d.ServiceSubconCuttingId
                           join e in garmentServiceSubconCuttingDetailRepository.Query on d.Identity equals e.ServiceSubconCuttingItemId
                           join f in garmentServiceSubconCuttingSizeRepository.Query on e.Identity equals f.ServiceSubconCuttingDetailId
-                          //where a.Deleted == false && b.Deleted == false && c.Deleted == false
-                          //&& d.Deleted == false && e.Deleted == false && f.Deleted == false
-                          where
-                          a.DLDate.AddHours(7).Date >= request.dateFrom
+                          where a.Deleted == false && b.Deleted == false && c.Deleted == false
+                          && d.Deleted == false && e.Deleted == false && f.Deleted == false
+                          && a.DLDate.AddHours(7).Date >= request.dateFrom
                           && a.DLDate.AddHours(7).Date <= request.dateTo.Date
                           && a.ContractType == "SUBCON JASA" && a.SubconCategory == "SUBCON JASA KOMPONEN"
 
@@ -155,8 +154,7 @@ namespace Manufactures.Application.GarmentSubcon.Queries.GarmentSubconDLOCompone
                               colour = key.Colour,
                               quantity = group.Sum(x => x.Quantity),
                               uomUnit = key.UomUnit
-                          }).ToList();
-
+                          }).ToList().OrderBy(x => x.dlNo).ThenBy(x => x.subConNo);
 
             GarmentSubconDLOComponentServiceReportListViewModel listViewModel = new GarmentSubconDLOComponentServiceReportListViewModel();
             List<GarmentSubconDLOComponentServiceReportDto> rekapcomponentservice = new List<GarmentSubconDLOComponentServiceReportDto>();
@@ -325,57 +323,57 @@ namespace Manufactures.Application.GarmentSubcon.Queries.GarmentSubconDLOCompone
                     worksheet.Cells[$"F{(rowNum1 + 3)}:F{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
                     worksheet.Cells[$"F{(rowNum1 + 3)}:F{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
 
-                    worksheet.Cells[$"G{(rowNum1 + 3)}:G{(rowNum2) + 3}"].Merge = true;
-                    worksheet.Cells[$"G{(rowNum1 + 3)}:G{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    worksheet.Cells[$"G{(rowNum1 + 3)}:G{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
+                    //worksheet.Cells[$"G{(rowNum1 + 3)}:G{(rowNum2) + 3}"].Merge = true;
+                    //worksheet.Cells[$"G{(rowNum1 + 3)}:G{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    //worksheet.Cells[$"G{(rowNum1 + 3)}:G{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
 
-                    worksheet.Cells[$"H{(rowNum1 + 3)}:H{(rowNum2) + 3}"].Merge = true;
-                    worksheet.Cells[$"H{(rowNum1 + 3)}:H{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    worksheet.Cells[$"H{(rowNum1 + 3)}:H{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
+                    //worksheet.Cells[$"H{(rowNum1 + 3)}:H{(rowNum2) + 3}"].Merge = true;
+                    //worksheet.Cells[$"H{(rowNum1 + 3)}:H{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    //worksheet.Cells[$"H{(rowNum1 + 3)}:H{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
 
-                    worksheet.Cells[$"I{(rowNum1 + 3)}:I{(rowNum2) + 3}"].Merge = true;
-                    worksheet.Cells[$"I{(rowNum1 + 3)}:I{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    worksheet.Cells[$"I{(rowNum1 + 3)}:I{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
+                    //worksheet.Cells[$"I{(rowNum1 + 3)}:I{(rowNum2) + 3}"].Merge = true;
+                    //worksheet.Cells[$"I{(rowNum1 + 3)}:I{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    //worksheet.Cells[$"I{(rowNum1 + 3)}:I{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
 
-                    worksheet.Cells[$"J{(rowNum1 + 3)}:J{(rowNum2) + 3}"].Merge = true;
-                    worksheet.Cells[$"J{(rowNum1 + 3)}:J{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    worksheet.Cells[$"J{(rowNum1 + 3)}:J{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
+                    //worksheet.Cells[$"J{(rowNum1 + 3)}:J{(rowNum2) + 3}"].Merge = true;
+                    //worksheet.Cells[$"J{(rowNum1 + 3)}:J{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    //worksheet.Cells[$"J{(rowNum1 + 3)}:J{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
 
-                    worksheet.Cells[$"K{(rowNum1 + 3)}:K{(rowNum2) + 3}"].Merge = true;
-                    worksheet.Cells[$"K{(rowNum1 + 3)}:K{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    worksheet.Cells[$"K{(rowNum1 + 3)}:K{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
+                    //worksheet.Cells[$"K{(rowNum1 + 3)}:K{(rowNum2) + 3}"].Merge = true;
+                    //worksheet.Cells[$"K{(rowNum1 + 3)}:K{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    //worksheet.Cells[$"K{(rowNum1 + 3)}:K{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
 
-                    worksheet.Cells[$"L{(rowNum1 + 3)}:L{(rowNum2) + 3}"].Merge = true;
-                    worksheet.Cells[$"L{(rowNum1 + 3)}:L{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    worksheet.Cells[$"L{(rowNum1 + 3)}:L{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
+                    //worksheet.Cells[$"L{(rowNum1 + 3)}:L{(rowNum2) + 3}"].Merge = true;
+                    //worksheet.Cells[$"L{(rowNum1 + 3)}:L{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    //worksheet.Cells[$"L{(rowNum1 + 3)}:L{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
 
-                    worksheet.Cells[$"M{(rowNum1 + 3)}:M{(rowNum2) + 3}"].Merge = true;
-                    worksheet.Cells[$"M{(rowNum1 + 3)}:M{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    worksheet.Cells[$"M{(rowNum1 + 3)}:M{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
+                    //worksheet.Cells[$"M{(rowNum1 + 3)}:M{(rowNum2) + 3}"].Merge = true;
+                    //worksheet.Cells[$"M{(rowNum1 + 3)}:M{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    //worksheet.Cells[$"M{(rowNum1 + 3)}:M{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
 
-                    worksheet.Cells[$"N{(rowNum1 + 3)}:N{(rowNum2) + 3}"].Merge = true;
-                    worksheet.Cells[$"N{(rowNum1 + 3)}:N{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    worksheet.Cells[$"N{(rowNum1 + 3)}:N{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
+                    //worksheet.Cells[$"N{(rowNum1 + 3)}:N{(rowNum2) + 3}"].Merge = true;
+                    //worksheet.Cells[$"N{(rowNum1 + 3)}:N{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    //worksheet.Cells[$"N{(rowNum1 + 3)}:N{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
 
-                    worksheet.Cells[$"O{(rowNum1 + 3)}:O{(rowNum2) + 3}"].Merge = true;
-                    worksheet.Cells[$"O{(rowNum1 + 3)}:O{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    worksheet.Cells[$"O{(rowNum1 + 3)}:O{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
+                    //worksheet.Cells[$"O{(rowNum1 + 3)}:O{(rowNum2) + 3}"].Merge = true;
+                    //worksheet.Cells[$"O{(rowNum1 + 3)}:O{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    //worksheet.Cells[$"O{(rowNum1 + 3)}:O{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
 
-                    worksheet.Cells[$"P{(rowNum1 + 3)}:P{(rowNum2) + 3}"].Merge = true;
-                    worksheet.Cells[$"P{(rowNum1 + 3)}:P{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    worksheet.Cells[$"P{(rowNum1 + 3)}:P{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
+                    //worksheet.Cells[$"P{(rowNum1 + 3)}:P{(rowNum2) + 3}"].Merge = true;
+                    //worksheet.Cells[$"P{(rowNum1 + 3)}:P{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    //worksheet.Cells[$"P{(rowNum1 + 3)}:P{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
 
-                    worksheet.Cells[$"Q{(rowNum1 + 3)}:Q{(rowNum2) + 3}"].Merge = true;
-                    worksheet.Cells[$"Q{(rowNum1 + 3)}:Q{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    worksheet.Cells[$"Q{(rowNum1 + 3)}:Q{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
+                    //worksheet.Cells[$"Q{(rowNum1 + 3)}:Q{(rowNum2) + 3}"].Merge = true;
+                    //worksheet.Cells[$"Q{(rowNum1 + 3)}:Q{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    //worksheet.Cells[$"Q{(rowNum1 + 3)}:Q{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
 
-                    worksheet.Cells[$"R{(rowNum1 + 3)}:R{(rowNum2) + 3}"].Merge = true;
-                    worksheet.Cells[$"R{(rowNum1 + 3)}:R{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    worksheet.Cells[$"R{(rowNum1 + 3)}:R{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
+                    //worksheet.Cells[$"R{(rowNum1 + 3)}:R{(rowNum2) + 3}"].Merge = true;
+                    //worksheet.Cells[$"R{(rowNum1 + 3)}:R{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    //worksheet.Cells[$"R{(rowNum1 + 3)}:R{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
 
-                    worksheet.Cells[$"S{(rowNum1 + 3)}:S{(rowNum2) + 3}"].Merge = true;
-                    worksheet.Cells[$"S{(rowNum1 + 3)}:S{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    worksheet.Cells[$"S{(rowNum1 + 3)}:S{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
+                    //worksheet.Cells[$"S{(rowNum1 + 3)}:S{(rowNum2) + 3}"].Merge = true;
+                    //worksheet.Cells[$"S{(rowNum1 + 3)}:S{(rowNum2) + 3}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    //worksheet.Cells[$"S{(rowNum1 + 3)}:S{(rowNum2) + 3}"].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
 
                 }
 
