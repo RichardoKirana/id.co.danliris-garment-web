@@ -79,7 +79,7 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
                 .Setup(s => s.Find(It.IsAny<IQueryable<GarmentServiceSubconShrinkagePanelReadModel>>()))
                 .Returns(new List<GarmentServiceSubconShrinkagePanel>()
                 {
-                    new GarmentServiceSubconShrinkagePanel(serviceSubconShrinkagePanelGuid,null,  DateTimeOffset.Now,null, false, 0, null)
+                    new GarmentServiceSubconShrinkagePanel(serviceSubconShrinkagePanelGuid,null,  DateTimeOffset.Now,null, false, 0, null, 0, 0)
                 });
 
             Guid serviceSubconShrinkagePanelItemGuid = Guid.NewGuid();
@@ -109,7 +109,7 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
                 .Setup(s => s.Find(It.IsAny<Expression<Func<GarmentServiceSubconShrinkagePanelReadModel, bool>>>()))
                 .Returns(new List<GarmentServiceSubconShrinkagePanel>()
                 {
-                    new GarmentServiceSubconShrinkagePanel(serviceSubconShrinkagePanelGuid,null, DateTimeOffset.Now, null,false, 0, null)
+                    new GarmentServiceSubconShrinkagePanel(serviceSubconShrinkagePanelGuid,null, DateTimeOffset.Now, null,false, 0, null, 0, 0)
                 });
 
             Guid serviceSubconShrinkagePanelItemGuid = Guid.NewGuid();
@@ -140,7 +140,7 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
             Guid serviceSubconShrinkagePanelGuid = Guid.NewGuid();
             _MockMediator
                 .Setup(s => s.Send(It.IsAny<PlaceGarmentServiceSubconShrinkagePanelCommand>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new GarmentServiceSubconShrinkagePanel(serviceSubconShrinkagePanelGuid, null, DateTimeOffset.Now,null, false, 0, null));
+                .ReturnsAsync(new GarmentServiceSubconShrinkagePanel(serviceSubconShrinkagePanelGuid, null, DateTimeOffset.Now,null, false, 0, null, 0, 0));
 
             // Act
             var result = await unitUnderTest.Post(It.IsAny<PlaceGarmentServiceSubconShrinkagePanelCommand>());
@@ -172,7 +172,7 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
             Guid serviceSubconShrinkagePanelGuid = Guid.NewGuid();
             _MockMediator
                 .Setup(s => s.Send(It.IsAny<UpdateGarmentServiceSubconShrinkagePanelCommand>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new GarmentServiceSubconShrinkagePanel(serviceSubconShrinkagePanelGuid, null, DateTimeOffset.Now,null, false, 0, null));
+                .ReturnsAsync(new GarmentServiceSubconShrinkagePanel(serviceSubconShrinkagePanelGuid, null, DateTimeOffset.Now,null, false, 0, null, 0, 0));
             // Act
             var result = await unitUnderTest.Put(Guid.NewGuid().ToString(), new UpdateGarmentServiceSubconShrinkagePanelCommand());
 
@@ -188,7 +188,7 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
             Guid serviceSubconShrinkagePanelGuid = Guid.NewGuid();
             _MockMediator
                 .Setup(s => s.Send(It.IsAny<RemoveGarmentServiceSubconShrinkagePanelCommand>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new GarmentServiceSubconShrinkagePanel(serviceSubconShrinkagePanelGuid, null, DateTimeOffset.Now,null, false, 0, null));
+                .ReturnsAsync(new GarmentServiceSubconShrinkagePanel(serviceSubconShrinkagePanelGuid, null, DateTimeOffset.Now,null, false, 0, null,0, 0));
 
             // Act
             var result = await unitUnderTest.Delete(Guid.NewGuid().ToString());
@@ -210,7 +210,7 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
                 .Setup(s => s.Find(It.IsAny<IQueryable<GarmentServiceSubconShrinkagePanelReadModel>>()))
                 .Returns(new List<GarmentServiceSubconShrinkagePanel>()
                 {
-                    new GarmentServiceSubconShrinkagePanel(id, null, DateTimeOffset.Now,null, false, 0, null)
+                    new GarmentServiceSubconShrinkagePanel(id, null, DateTimeOffset.Now,null, false, 0, null, 0, 0)
                 });
 
             GarmentServiceSubconShrinkagePanelItem garmentServiceSubconShrinkagePanelItem = new GarmentServiceSubconShrinkagePanelItem(id, id, null, DateTimeOffset.Now, new UnitSenderId(1), null, null, new UnitRequestId(1), null, null);

@@ -17,8 +17,10 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconSewings
         public string BuyerName { get; private set; }
         public int QtyPacking { get; private set; }
         public string UomUnit { get; private set; }
+        public double NettWeight { get; private set; }
+        public double GrossWeight { get; private set; }
         //
-        public GarmentServiceSubconSewing(Guid identity, string serviceSubconSewingNo, DateTimeOffset serviceSubconSewingDate, bool isUsed, BuyerId buyerId, string buyerCode, string buyerName, int qtyPacking, string uomUnit) : base(identity)
+        public GarmentServiceSubconSewing(Guid identity, string serviceSubconSewingNo, DateTimeOffset serviceSubconSewingDate, bool isUsed, BuyerId buyerId, string buyerCode, string buyerName, int qtyPacking, string uomUnit, double nettWeight, double grossWeight) : base(identity)
         {
             
             Identity = identity;
@@ -30,6 +32,8 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconSewings
             BuyerName = buyerName;
             QtyPacking = qtyPacking;
             UomUnit = uomUnit;
+            NettWeight = nettWeight;
+            GrossWeight = grossWeight; 
 
             ReadModel = new GarmentServiceSubconSewingReadModel(Identity)
             {
@@ -43,7 +47,9 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconSewings
                 BuyerCode = BuyerCode,
                 BuyerName = BuyerName,
                 QtyPacking = QtyPacking,
-                UomUnit = UomUnit
+                UomUnit = UomUnit,
+                NettWeight = NettWeight,
+                GrossWeight = GrossWeight
             };
 
             ReadModel.AddDomainEvent(new OnGarmentServiceSubconSewingPlaced(Identity));
@@ -63,6 +69,8 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconSewings
             BuyerName = readModel.BuyerName;
             QtyPacking = readModel.QtyPacking;
             UomUnit = readModel.UomUnit;
+            NettWeight = readModel.NettWeight;
+            GrossWeight = readModel.GrossWeight;
         }
 
         public void SetDate(DateTimeOffset ServiceSubconSewingDate)
@@ -124,6 +132,24 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconSewings
             {
                 this.UomUnit = uomUnit;
                 ReadModel.UomUnit = uomUnit;
+            }
+        }
+
+        public void SetNettWeight(double nettWeight)
+        {
+            if(this.NettWeight != nettWeight)
+            {
+                this.NettWeight = nettWeight;
+                ReadModel.NettWeight = nettWeight;
+            }
+        }
+
+        public void SetGrossWeight(double grossWeight)
+        {
+            if(this.GrossWeight != grossWeight)
+            {
+                this.GrossWeight = grossWeight;
+                ReadModel.GrossWeight = grossWeight;
             }
         }
 

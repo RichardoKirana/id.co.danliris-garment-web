@@ -15,8 +15,10 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconFabricWashes
         public bool IsUsed { get; private set; }
         public int QtyPacking { get; private set; }
         public string UomUnit { get; private set; }
+        public double NettWeight { get; private set; }
+        public double GrossWeight { get; private set; }
 
-        public GarmentServiceSubconFabricWash(Guid identity, string serviceSubconFabricWashNo, DateTimeOffset serviceSubconFabricWashDate, string remark, bool isUsed, int qtyPacking, string uomUnit) : base(identity)
+        public GarmentServiceSubconFabricWash(Guid identity, string serviceSubconFabricWashNo, DateTimeOffset serviceSubconFabricWashDate, string remark, bool isUsed, int qtyPacking, string uomUnit, double nettWeight, double grossWeight) : base(identity)
         {
             Identity = identity;
             ServiceSubconFabricWashNo = serviceSubconFabricWashNo;
@@ -25,6 +27,8 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconFabricWashes
             Remark = remark;
             QtyPacking = qtyPacking;
             UomUnit = uomUnit;
+            NettWeight = nettWeight;
+            GrossWeight = grossWeight;
 
             ReadModel = new GarmentServiceSubconFabricWashReadModel(Identity)
             {
@@ -33,7 +37,9 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconFabricWashes
                 Remark = Remark,
                 IsUsed = IsUsed,
                 QtyPacking = QtyPacking,
-                UomUnit = UomUnit
+                UomUnit = UomUnit,
+                NettWeight = NettWeight,
+                GrossWeight = GrossWeight,
             };
 
             ReadModel.AddDomainEvent(new OnGarmentServiceSubconFabricWashPlaced(Identity));
@@ -47,6 +53,8 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconFabricWashes
             IsUsed = readModel.IsUsed;
             QtyPacking = readModel.QtyPacking;
             UomUnit = readModel.UomUnit;
+            NettWeight = readModel.NettWeight;
+            GrossWeight = readModel.GrossWeight;
         }
 
         public void SetServiceSubconFabricWashDate(DateTimeOffset ServiceSubconFabricWashDate)
@@ -92,6 +100,24 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconFabricWashes
             {
                 this.UomUnit = uomUnit;
                 ReadModel.UomUnit = UomUnit;
+            }
+        }
+
+        public void SetNettWeight(double nettWeight)
+        {
+            if(this.NettWeight != nettWeight)
+            {
+                this.NettWeight = nettWeight;
+                ReadModel.NettWeight = NettWeight;
+            }
+        }
+
+        public void SetGrossWeight(double grossWeight)
+        {
+            if(this.GrossWeight != grossWeight)
+            {
+                this.GrossWeight = grossWeight;
+                ReadModel.GrossWeight = GrossWeight;
             }
         }
 

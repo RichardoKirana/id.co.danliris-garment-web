@@ -43,6 +43,8 @@ namespace Manufactures.Tests.Validations.GarmentSubcon.GarmentServiceSubconCutti
                 SubconDate = DateTimeOffset.Now,
                 SubconNo = "CuttingOutNo",
                 QtyPacking = 1,
+                NettWeight = 1,
+                GrossWeight = 1,
                 Uom = new Uom()
                 {
                     Id = 1,

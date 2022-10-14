@@ -16,6 +16,8 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconShrinkagePanels.Command
         public bool IsUsed { get; set; }
         public int QtyPacking { get; set; }
         public string UomUnit { get; set; }
+        public double NettWeight { get; set; }
+        public double GrossWeight { get; set; }
         public List<GarmentServiceSubconShrinkagePanelItemValueObject> Items { get; set; }
 
         public void SetIdentity(Guid id)
@@ -30,6 +32,8 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconShrinkagePanels.Command
         {
             RuleFor(r => r.ServiceSubconShrinkagePanelDate).NotNull().GreaterThan(DateTimeOffset.MinValue).WithMessage("Tanggal Subcon Jasa Shrinkage Panel Tidak Boleh Kosong");
             //RuleFor(r => r.ServiceSubconSewingDate).NotNull().LessThan(DateTimeOffset.Now).WithMessage("Tanggal Subcon Jasa Sewing Tidak Boleh Lebih dari Hari Ini");
+            RuleFor(r => r.NettWeight).NotEmpty().WithMessage("Nett Weight tidak boleh kosong!").OverridePropertyName("Nett Weight");
+            RuleFor(r => r.GrossWeight).NotEmpty().WithMessage("Gross Weight tidak boleh kosong!").OverridePropertyName("Gross Weight");
             RuleFor(r => r.Items).NotEmpty().OverridePropertyName("Item");
             RuleFor(r => r.Items).NotEmpty().WithMessage("Item Tidak Boleh Kosong").OverridePropertyName("ItemsCount");
             RuleForEach(r => r.Items).SetValidator(new GarmentServiceSubconShrinkagePanelItemValueObjectValidator());

@@ -23,28 +23,28 @@ namespace Manufactures.Tests.CommandHandlers.GarmentSubcon.GarmentServiceSubconS
     {
         private readonly Mock<IGarmentServiceSubconSewingRepository> _mockServiceSubconSewingRepository;
         private readonly Mock<IGarmentServiceSubconSewingItemRepository> _mockServiceSubconSewingItemRepository;
-        //private readonly Mock<IGarmentServiceSubconSewingDetailRepository> _mockServiceSubconSewingDetailRepository;
-        //private readonly Mock<IGarmentPreparingRepository> _mockGarmentPreparingRepository;
+		private readonly Mock<IGarmentServiceSubconSewingDetailRepository> _mockServiceSubconSewingDetailRepository;
+		//private readonly Mock<IGarmentPreparingRepository> _mockGarmentPreparingRepository;
 
-        public UpdateGarmentServiceSubconSewingCommandHandlerTests()
+		public UpdateGarmentServiceSubconSewingCommandHandlerTests()
         {
             _mockServiceSubconSewingRepository = CreateMock<IGarmentServiceSubconSewingRepository>();
             _mockServiceSubconSewingItemRepository = CreateMock<IGarmentServiceSubconSewingItemRepository>();
-            // _mockServiceSubconSewingDetailRepository = CreateMock<IGarmentServiceSubconSewingDetailRepository>();
-            //_mockGarmentPreparingRepository = CreateMock<IGarmentPreparingRepository>();
+			_mockServiceSubconSewingDetailRepository = CreateMock<IGarmentServiceSubconSewingDetailRepository>();
+			//_mockGarmentPreparingRepository = CreateMock<IGarmentPreparingRepository>();
 
-            _MockStorage.SetupStorage(_mockServiceSubconSewingRepository);
+			_MockStorage.SetupStorage(_mockServiceSubconSewingRepository);
             _MockStorage.SetupStorage(_mockServiceSubconSewingItemRepository);
-            //_MockStorage.SetupStorage(_mockGarmentPreparingRepository);
-            // _MockStorage.SetupStorage(_mockServiceSubconSewingDetailRepository);
-        }
+			//_MockStorage.SetupStorage(_mockGarmentPreparingRepository);
+			_MockStorage.SetupStorage(_mockServiceSubconSewingDetailRepository);
+		}
 
-        private UpdateGarmentServiceSubconSewingCommandHandler CreateUpdateGarmentServiceSubconSewingCommandHandler()
-        {
-            return new UpdateGarmentServiceSubconSewingCommandHandler(_MockStorage.Object);
-        }
+		private UpdateGarmentServiceSubconSewingCommandHandler CreateUpdateGarmentServiceSubconSewingCommandHandler()
+		{
+			return new UpdateGarmentServiceSubconSewingCommandHandler(_MockStorage.Object);
+		}
 
-        [Fact]
+		[Fact]
         public async Task Handle_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
@@ -56,97 +56,156 @@ namespace Manufactures.Tests.CommandHandlers.GarmentSubcon.GarmentServiceSubconS
             CancellationToken cancellationToken = CancellationToken.None;
             UpdateGarmentServiceSubconSewingCommand UpdateGarmentServiceSubconSewingCommand = new UpdateGarmentServiceSubconSewingCommand()
             {
-                Buyer = new Buyer(1, "BuyerCode", "BuyerName"),
+                //Buyer = new Buyer(1, "BuyerCode", "BuyerName"),
+                //Items = new List<GarmentServiceSubconSewingItemValueObject>
+                //{
+                //    new GarmentServiceSubconSewingItemValueObject
+                //    {
+                //        RONo = "RONo",
+                //        Article = "Article",
+                //        Comodity = new GarmentComodity(1, "ComoCode", "ComoName"),
+                //        Buyer = new Buyer(1, "BuyerCode", "BuyerName"),
+                //        Details= new List<GarmentServiceSubconSewingDetailValueObject>
+                //        {
+                //            new GarmentServiceSubconSewingDetailValueObject
+                //            {
+                //                Product = new Product(1, "ProductCode", "ProductName"),
+                //                Uom = new Uom(1, "UomUnit"),
+                //                SewingInId= new Guid(),
+                //                SewingInItemId=sewingInItemGuid,
+                //                IsSave=true,
+                //                Quantity=1,
+                //                DesignColor= "ColorD",
+                //                Unit = new UnitDepartment(1, "UnitCode", "UnitName"),
+                //            }
+                //        }
+
+                //    }
+                //},
+                ServiceSubconSewingNo = "serviceSewingNo",
+                Buyer = new Buyer(1, "buyerCode", "buyerName"),
+                ServiceSubconSewingDate = DateTimeOffset.Now,
+                QtyPacking = 1,
+                UomUnit = "uomUnit",
+                NettWeight = 1,
+                GrossWeight = 1,
                 Items = new List<GarmentServiceSubconSewingItemValueObject>
-                {
+				{
                     new GarmentServiceSubconSewingItemValueObject
-                    {
-                        RONo = "RONo",
-                        Article = "Article",
-                        Comodity = new GarmentComodity(1, "ComoCode", "ComoName"),
-                        Buyer = new Buyer(1, "BuyerCode", "BuyerName"),
-                        Details= new List<GarmentServiceSubconSewingDetailValueObject>
-                        {
+					{
+                        RONo = "rONo",
+                        Article = "article",
+                        Comodity = new GarmentComodity(1, "comodityCode", "comodityName"),
+                        Buyer = new Buyer(1, "buyerCode", "buyerName"),
+                        Unit = new UnitDepartment(1, "unitCode", "unitName"),
+                        Details = new List<GarmentServiceSubconSewingDetailValueObject>
+						{
                             new GarmentServiceSubconSewingDetailValueObject
-                            {
-                                Product = new Product(1, "ProductCode", "ProductName"),
-                                Uom = new Uom(1, "UomUnit"),
-                                SewingInId= new Guid(),
-                                SewingInItemId=sewingInItemGuid,
-                                IsSave=true,
-                                Quantity=1,
-                                DesignColor= "ColorD",
-                                Unit = new UnitDepartment(1, "UnitCode", "UnitName"),
-                            }
-                        }
-
-                    }
-                },
-
+							{
+                                Product = new Product(1, "productCode", "productName"),
+                                Unit = new UnitDepartment(1, "unitCode", "unitName"),
+                                DesignColor = "designColor",
+                                Quantity = 1,
+                                Uom = new Uom(1, "uomUnit"),
+                                IsSave = true,
+                                SewingInQuantity = 1,
+                                TotalQuantity = 1,
+                                Remark = "remark",
+                                Color = "1"
+							}
+						}
+					}
+				}
             };
 
             UpdateGarmentServiceSubconSewingCommand.SetIdentity(serviceSubconSewingGuid);
 
-            _mockServiceSubconSewingRepository
-                .Setup(s => s.Query)
-                .Returns(new List<GarmentServiceSubconSewingReadModel>()
-                {
-                    new GarmentServiceSubconSewingReadModel(serviceSubconSewingGuid)
-                }.AsQueryable());
-
-            //_mockServiceSubconSewingItemRepository
-            //    .Setup(s => s.Find(It.IsAny<Expression<Func<GarmentServiceSubconSewingItemReadModel, bool>>>()))
-            //    .Returns(new List<GarmentServiceSubconSewingItem>()
+            //_mockServiceSubconSewingRepository
+            //    .Setup(s => s.Query)
+            //    .Returns(new List<GarmentServiceSubconSewingReadModel>()
             //    {
-            //        new GarmentServiceSubconSewingItem(
-            //            Guid.Empty,
-            //            serviceSubconSewingGuid,
-            //            null,
-            //            null,
-            //            new GarmentComodityId(1),
-            //            null,
-            //            null,
-            //            new BuyerId(1),
-            //            null,
-            //            null)
-            //    });
-            //_mockServiceSubconSewingDetailRepository
-            //    .Setup(s => s.Find(It.IsAny<Expression<Func<GarmentServiceSubconSewingDetailReadModel, bool>>>()))
-            //    .Returns(new List<GarmentServiceSubconSewingDetail>()
-            //    {
-            //        new GarmentServiceSubconSewingDetail(
-            //            new Guid(),
-            //            serviceSubconSewingItemGuid,
-            //            Guid.Empty,
-            //            Guid.Empty,
-            //            new ProductId(1),
-            //            null,
-            //            null,
-            //            null,
-            //            1,
-            //            new UomId(1),
-            //            null,
-            //            new UnitDepartmentId(1),
-            //            null,
-            //            null)
-            //    });
+            //        new GarmentServiceSubconSewingReadModel(serviceSubconSewingGuid)
+            //    }.AsQueryable());
+
+			_mockServiceSubconSewingItemRepository
+				.Setup(s => s.Find(It.IsAny<Expression<Func<GarmentServiceSubconSewingItemReadModel, bool>>>()))
+				.Returns(new List<GarmentServiceSubconSewingItem>()
+				{
+					new GarmentServiceSubconSewingItem(
+						Guid.Empty,
+						serviceSubconSewingGuid,
+						null,
+						null,
+						new GarmentComodityId(1),
+						null,
+						null,
+						new BuyerId(1),
+						null,
+						null,
+                        new UnitDepartmentId(1),
+                        null,
+                        null)
+				});
+			_mockServiceSubconSewingDetailRepository
+				.Setup(s => s.Find(It.IsAny<Expression<Func<GarmentServiceSubconSewingDetailReadModel, bool>>>()))
+				.Returns(new List<GarmentServiceSubconSewingDetail>()
+				{
+					new GarmentServiceSubconSewingDetail(
+						new Guid(),
+						serviceSubconSewingItemGuid,
+						Guid.Empty,
+						Guid.Empty,
+						new ProductId(1),
+						null,
+						null,
+						null,
+						1,
+						new UomId(1),
+						null,
+						new UnitDepartmentId(1),
+						null,
+						null,
+                        null,
+                        null)
+				});
 
             _mockServiceSubconSewingRepository
+              .Setup(s => s.Query)
+              .Returns(new List<GarmentServiceSubconSewingReadModel>()
+              {
+                    new GarmentServiceSubconSewing(serviceSubconSewingGuid, "serviceSubconSewingNo", DateTimeOffset.Now, true, new BuyerId(1), "buyerCode", "buyerName", 1, "uomUnit", 1, 1).GetReadModel()
+              }.AsQueryable());
+
+   //         _mockServiceSubconSewingItemRepository
+   //           .Setup(s => s.Query)
+   //           .Returns(new List<GarmentServiceSubconSewingItemReadModel>()
+   //           {
+   //                 new GarmentServiceSubconSewingItem(serviceSubconSewingItemGuid, serviceSubconSewingGuid, "rONo", "article",  new GarmentComodityId(1), "comodityCode", "comodityName", new BuyerId(1), "buyerCode", "buyerName", new UnitDepartmentId(1), "unitCode", "unitName").GetReadModel()
+   //           }.AsQueryable());
+
+			//_mockServiceSubconSewingDetailRepository
+			//  .Setup(s => s.Query)
+			//  .Returns(new List<GarmentServiceSubconSewingDetailReadModel>()
+			//  {
+			//		new GarmentServiceSubconSewingDetail(new Guid(), serviceSubconSewingItemGuid, new Guid(), new Guid(), new ProductId(1), "productCode", "productName", "designColor", 1, new UomId(1), "uomUnit", new UnitDepartmentId(1), "unitCode", "unitName", "remark", "color").GetReadModel()
+			//  }.AsQueryable());
+
+			_mockServiceSubconSewingRepository
                 .Setup(s => s.Update(It.IsAny<GarmentServiceSubconSewing>()))
                 .Returns(Task.FromResult(It.IsAny<GarmentServiceSubconSewing>()));
 
-            //_mockServiceSubconSewingItemRepository
-            //    .Setup(s => s.Update(It.IsAny<GarmentServiceSubconSewingItem>()))
-            //    .Returns(Task.FromResult(It.IsAny<GarmentServiceSubconSewingItem>()));
-            //_mockServiceSubconSewingDetailRepository
-            //    .Setup(s => s.Update(It.IsAny<GarmentServiceSubconSewingDetail>()))
-            //    .Returns(Task.FromResult(It.IsAny<GarmentServiceSubconSewingDetail>()));
+			_mockServiceSubconSewingItemRepository
+				.Setup(s => s.Update(It.IsAny<GarmentServiceSubconSewingItem>()))
+				.Returns(Task.FromResult(It.IsAny<GarmentServiceSubconSewingItem>()));
+			_mockServiceSubconSewingDetailRepository
+				.Setup(s => s.Update(It.IsAny<GarmentServiceSubconSewingDetail>()))
+				.Returns(Task.FromResult(It.IsAny<GarmentServiceSubconSewingDetail>()));
 
-            //_mockGarmentPreparingRepository
-            //    .Setup(s => s.RoChecking(It.IsAny<IEnumerable<string>>()))
-            //    .Returns(true);
+			//_mockGarmentPreparingRepository
+			//	.Setup(s => s.RoChecking(It.IsAny<IEnumerable<string>>()))
+			//	.Returns(true);
 
-            _MockStorage
+			_MockStorage
                 .Setup(x => x.Save())
                 .Verifiable();
 

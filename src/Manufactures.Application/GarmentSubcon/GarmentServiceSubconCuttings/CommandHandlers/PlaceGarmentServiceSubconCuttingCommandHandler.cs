@@ -63,7 +63,9 @@ namespace Manufactures.Application.GarmentSubcon.GarmentServiceSubconCuttings.Co
                 request.Buyer.Name,
                 new UomId(request.Uom.Id),
                 request.Uom.Unit,
-                request.QtyPacking
+                request.QtyPacking,
+                request.NettWeight,
+                request.GrossWeight
             );
             foreach (var item in request.Items)
             {

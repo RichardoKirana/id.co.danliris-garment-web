@@ -50,7 +50,6 @@ namespace Manufactures.Tests.CommandHandlers.GarmentSubcon.GarmentSubconContract
             GarmentSubconContract garmentSubconContract = new GarmentSubconContract(
                 SubconContractGuid, null, null, null, new SupplierId(1), "", "", null, null, null, 1, DateTimeOffset.Now, DateTimeOffset.Now, false,  "", new UomId(1), "", "", DateTimeOffset.Now, 0/*,""*/,1,1);
 
-
             _mockSubconContractRepository
                 .Setup(s => s.Query)
                 .Returns(new List<GarmentSubconContractReadModel>()

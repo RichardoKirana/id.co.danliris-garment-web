@@ -63,6 +63,24 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconFabricWashes
             UomUnit = readModel.UomUnit;
         }
 
+        public void SetQuantity(decimal Quantity)
+        {
+            if (this.Quantity != Quantity)
+            {
+                this.Quantity = Quantity;
+                ReadModel.Quantity = Quantity;
+            }
+        }
+
+        public void SetProductRemark(string ProductRemark)
+        {
+            if (this.ProductRemark != ProductRemark)
+            {
+                this.ProductRemark = ProductRemark;
+                ReadModel.ProductRemark = ProductRemark;
+            }
+        }
+
         public void Modify()
         {
             MarkModified();
@@ -71,15 +89,6 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconFabricWashes
         protected override GarmentServiceSubconFabricWashDetail GetEntity()
         {
             return this;
-        }
-
-        public void SetQuantity(decimal Quantity)
-        {
-            if (this.Quantity != Quantity)
-            {
-                this.Quantity = Quantity;
-                ReadModel.Quantity = Quantity;
-            }
         }
     }
 }

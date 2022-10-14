@@ -16,6 +16,8 @@ namespace Manufactures.Dtos.GarmentSubcon.GarmentServiceSubconFabricWashes
             IsUsed = garmentServiceSubconFabricWashList.IsUsed;
             QtyPacking = garmentServiceSubconFabricWashList.QtyPacking;
             UomUnit = garmentServiceSubconFabricWashList.UomUnit;
+            NettWeight = garmentServiceSubconFabricWashList.NettWeight;
+            GrossWeight = garmentServiceSubconFabricWashList.GrossWeight;
             Items = new List<GarmentServiceSubconFabricWashItemDto>();
         }
 
@@ -26,7 +28,8 @@ namespace Manufactures.Dtos.GarmentSubcon.GarmentServiceSubconFabricWashes
         public bool IsUsed { get; set; }
         public int QtyPacking { get; set; }
         public string UomUnit { get; set; }
-
+        public double NettWeight { get; set; }
+        public double GrossWeight { get; set; }
         public virtual List<GarmentServiceSubconFabricWashItemDto> Items { get; internal set; }
     }
 }

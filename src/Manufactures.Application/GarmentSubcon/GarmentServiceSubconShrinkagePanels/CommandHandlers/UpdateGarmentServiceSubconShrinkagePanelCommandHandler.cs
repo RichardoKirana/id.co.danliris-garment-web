@@ -115,6 +115,8 @@ namespace Manufactures.Application.GarmentSubcon.GarmentServiceSubconShrinkagePa
             serviceSubconShrinkagePanel.SetRemark(request.Remark);
             serviceSubconShrinkagePanel.SetQtyPacking(request.QtyPacking);
             serviceSubconShrinkagePanel.SetUomUnit(request.UomUnit);
+            serviceSubconShrinkagePanel.SetNettWeight(request.NettWeight);
+            serviceSubconShrinkagePanel.SetGrossWeight(request.GrossWeight);
             serviceSubconShrinkagePanel.Modify();
             await _garmentServiceSubconShrinkagePanelRepository.Update(serviceSubconShrinkagePanel);
 

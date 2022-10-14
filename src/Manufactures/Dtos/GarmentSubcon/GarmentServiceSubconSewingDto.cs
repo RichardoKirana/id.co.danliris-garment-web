@@ -17,6 +17,8 @@ namespace Manufactures.Dtos.GarmentSubcon
             Buyer = new Buyer(garmentServiceSubconSewingList.BuyerId.Value, garmentServiceSubconSewingList.BuyerCode, garmentServiceSubconSewingList.BuyerName);
             QtyPacking = garmentServiceSubconSewingList.QtyPacking;
             UomUnit = garmentServiceSubconSewingList.UomUnit;
+            NettWeight = garmentServiceSubconSewingList.NettWeight;
+            GrossWeight = garmentServiceSubconSewingList.GrossWeight;
             Items = new List<GarmentServiceSubconSewingItemDto>();
         }
 
@@ -29,7 +31,8 @@ namespace Manufactures.Dtos.GarmentSubcon
         public Buyer Buyer { get; set; }
         public int QtyPacking { get; set; }
         public string UomUnit { get; set; }
-
+        public double NettWeight { get; set; }
+        public double GrossWeight { get; set; }
         public virtual List<GarmentServiceSubconSewingItemDto> Items { get; internal set; }
     }
 }

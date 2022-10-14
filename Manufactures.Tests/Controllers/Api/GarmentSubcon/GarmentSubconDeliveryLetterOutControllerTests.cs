@@ -343,16 +343,14 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
                     new GarmentSubconDeliveryLetterOutItem(SubconDeliveryLetterOutItemGuid,SubconDeliveryLetterOutGuid,1,new Domain.Shared.ValueObjects.ProductId(1),"code","name","remark","color",1,new Domain.Shared.ValueObjects.UomId(1),"unit",new Domain.Shared.ValueObjects.UomId(1),"unit","fabType",SubconCuttingGuid,"","","", "",1)
                  });
 
-            _mockGarmentSubconContractRepository
-                .Setup(s => s.Find(It.IsAny<Expression<Func<GarmentSubconContractReadModel, bool>>>()))
-                .Returns(new List<GarmentSubconContract>()
-                {
-                    new GarmentSubconContract(SubconContractGuid, "","","", new SupplierId(1),"","","","","",1,DateTimeOffset.Now,DateTimeOffset.Now,false,/*new BuyerId(1),"","",*/"",new UomId(1),"","",DateTimeOffset.Now, 1/*,""*/,1,1)
+			_mockGarmentSubconContractRepository
+				.Setup(s => s.Find(It.IsAny<Expression<Func<GarmentSubconContractReadModel, bool>>>()))
+				.Returns(new List<GarmentSubconContract>()
+				{
+					new GarmentSubconContract(SubconContractGuid, "","","", new SupplierId(1),"","","","","",1,DateTimeOffset.Now,DateTimeOffset.Now,false,/*new BuyerId(1),"","",*/"",new UomId(1),"","",DateTimeOffset.Now, 1, 1, 1)
+				});
 
-                });
-
-
-            _mockSubconCuttingOutRepository
+			_mockSubconCuttingOutRepository
                 .Setup(s => s.Find(It.IsAny<Expression<Func<GarmentCuttingOutReadModel, bool>>>()))
                 .Returns(new List<GarmentSubconCuttingOut>()
                 {
@@ -370,7 +368,7 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
                 .Setup(s => s.Find(It.IsAny<Expression<Func<GarmentServiceSubconSewingReadModel, bool>>>()))
                 .Returns(new List<GarmentServiceSubconSewing>()
                 {
-                    new GarmentServiceSubconSewing(SubconDeliveryLetterOutItemGuid, "",DateTimeOffset.Now,true, new BuyerId(1),"","",1,"")
+                    new GarmentServiceSubconSewing(SubconDeliveryLetterOutItemGuid, "",DateTimeOffset.Now,true, new BuyerId(1),"","",1,"", 1, 1)
                 });
 
             _mockGarmentServiceSubconSewingItemRepository

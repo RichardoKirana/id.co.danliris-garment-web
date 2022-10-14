@@ -78,7 +78,7 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
                 .Setup(s => s.Find(It.IsAny<IQueryable<GarmentServiceSubconSewingReadModel>>()))
                 .Returns(new List<GarmentServiceSubconSewing>()
                 {
-                    new GarmentServiceSubconSewing(serviceSubconSewingGuid,null,  DateTimeOffset.Now, false, new BuyerId(1), null, null,0,null)
+                    new GarmentServiceSubconSewing(serviceSubconSewingGuid,null,  DateTimeOffset.Now, false, new BuyerId(1), null, null,0,null, 0, 0)
                 });
             //, new UnitDepartmentId(1),null,null
             Guid sewingInItemGuid = Guid.NewGuid();
@@ -110,7 +110,7 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
                 .Setup(s => s.Find(It.IsAny<Expression<Func<GarmentServiceSubconSewingReadModel, bool>>>()))
                 .Returns(new List<GarmentServiceSubconSewing>()
                 {
-                    new GarmentServiceSubconSewing(serviceSubconSewingGuid,null, DateTimeOffset.Now, false, new BuyerId(1), null, null,0,null)
+                    new GarmentServiceSubconSewing(serviceSubconSewingGuid,null, DateTimeOffset.Now, false, new BuyerId(1), null, null,0,null, 0, 0)
                 });
 
             Guid sewingInItemGuid = Guid.NewGuid();
@@ -143,7 +143,7 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
             Guid serviceSubconSewingGuid = Guid.NewGuid();
             _MockMediator
                 .Setup(s => s.Send(It.IsAny<PlaceGarmentServiceSubconSewingCommand>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new GarmentServiceSubconSewing(serviceSubconSewingGuid, null, DateTimeOffset.Now, false, new BuyerId(1), null, null, 0, null));
+                .ReturnsAsync(new GarmentServiceSubconSewing(serviceSubconSewingGuid, null, DateTimeOffset.Now, false, new BuyerId(1), null, null, 0, null, 0, 0));
 
             // Act
             var result = await unitUnderTest.Post(It.IsAny<PlaceGarmentServiceSubconSewingCommand>());
@@ -175,7 +175,7 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
             Guid serviceSubconSewingGuid = Guid.NewGuid();
             _MockMediator
                 .Setup(s => s.Send(It.IsAny<UpdateGarmentServiceSubconSewingCommand>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new GarmentServiceSubconSewing(serviceSubconSewingGuid, null, DateTimeOffset.Now, false, new BuyerId(1), null, null, 0, null));
+                .ReturnsAsync(new GarmentServiceSubconSewing(serviceSubconSewingGuid, null, DateTimeOffset.Now, false, new BuyerId(1), null, null, 0, null, 0, 0));
             // Act
             var result = await unitUnderTest.Put(Guid.NewGuid().ToString(), new UpdateGarmentServiceSubconSewingCommand());
 
@@ -191,7 +191,7 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
             Guid serviceSubconSewingGuid = Guid.NewGuid();
             _MockMediator
                 .Setup(s => s.Send(It.IsAny<RemoveGarmentServiceSubconSewingCommand>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new GarmentServiceSubconSewing(serviceSubconSewingGuid, null, DateTimeOffset.Now, false, new BuyerId(1), null, null, 0, null));
+                .ReturnsAsync(new GarmentServiceSubconSewing(serviceSubconSewingGuid, null, DateTimeOffset.Now, false, new BuyerId(1), null, null, 0, null, 0, 0));
 
             // Act
             var result = await unitUnderTest.Delete(Guid.NewGuid().ToString());
@@ -214,7 +214,7 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
                 .Setup(s => s.Find(It.IsAny<IQueryable<GarmentServiceSubconSewingReadModel>>()))
                 .Returns(new List<GarmentServiceSubconSewing>()
                 {
-                    new GarmentServiceSubconSewing(id, null, DateTimeOffset.Now, false, new BuyerId(1), null, null,0,null)
+                    new GarmentServiceSubconSewing(id, null, DateTimeOffset.Now, false, new BuyerId(1), null, null,0,null, 0, 0)
                 });
 
             GarmentServiceSubconSewingItem garmentServiceSubconSewingItem = new GarmentServiceSubconSewingItem(id, id,  null, null,new GarmentComodityId(1),null, null, new BuyerId(1), null, null, new UnitDepartmentId(1), null, null);

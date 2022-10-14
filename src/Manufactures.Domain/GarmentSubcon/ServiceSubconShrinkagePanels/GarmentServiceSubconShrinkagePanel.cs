@@ -15,8 +15,9 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconShrinkagePanels
         public bool IsUsed { get; private set; }
         public int QtyPacking { get; private set; }
         public string UomUnit { get; private set; }
-
-        public GarmentServiceSubconShrinkagePanel(Guid identity, string serviceSubconShrinkagePanelNo, DateTimeOffset serviceSubconShrinkagePanelDate, string remark, bool isUsed, int qtyPacking, string uomUnit) : base(identity)
+        public double NettWeight { get; private set; }
+        public double GrossWeight { get; private set; }
+        public GarmentServiceSubconShrinkagePanel(Guid identity, string serviceSubconShrinkagePanelNo, DateTimeOffset serviceSubconShrinkagePanelDate, string remark, bool isUsed, int qtyPacking, string uomUnit, double nettWeight, double grossWeight) : base(identity)
         {
             Identity = identity;
             ServiceSubconShrinkagePanelNo = serviceSubconShrinkagePanelNo;
@@ -25,6 +26,8 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconShrinkagePanels
             IsUsed = isUsed;
             QtyPacking = qtyPacking;
             UomUnit = uomUnit;
+            NettWeight = nettWeight;
+            GrossWeight = grossWeight;
 
             ReadModel = new GarmentServiceSubconShrinkagePanelReadModel(Identity)
             {
@@ -33,7 +36,9 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconShrinkagePanels
                 Remark = Remark,
                 IsUsed = IsUsed,
                 QtyPacking = QtyPacking,
-                UomUnit = UomUnit
+                UomUnit = UomUnit,
+                NettWeight = NettWeight,
+                GrossWeight = GrossWeight
             };
 
             ReadModel.AddDomainEvent(new OnGarmentServiceSubconShrinkagePanelPlaced(Identity));
@@ -47,6 +52,8 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconShrinkagePanels
             IsUsed = readModel.IsUsed;
             QtyPacking = readModel.QtyPacking;
             UomUnit = readModel.UomUnit;
+            NettWeight = readModel.NettWeight;
+            GrossWeight = readModel.GrossWeight;
         }
 
         public void SetServiceSubconShrinkagePanelDate(DateTimeOffset ServiceSubconShrinkagePanelDate)
@@ -95,6 +102,24 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconShrinkagePanels
             {
                 this.UomUnit = uomUnit;
                 ReadModel.UomUnit = UomUnit;
+            }
+        }
+
+        public void SetNettWeight(double nettWeight)
+        {
+            if(this.NettWeight != nettWeight)
+            {
+                this.NettWeight = nettWeight;
+                ReadModel.NettWeight = NettWeight;
+            }
+        }
+
+        public void SetGrossWeight(double grossWeight)
+        {
+            if(this.GrossWeight != grossWeight)
+            {
+                this.GrossWeight = grossWeight;
+                ReadModel.GrossWeight = GrossWeight;
             }
         }
 

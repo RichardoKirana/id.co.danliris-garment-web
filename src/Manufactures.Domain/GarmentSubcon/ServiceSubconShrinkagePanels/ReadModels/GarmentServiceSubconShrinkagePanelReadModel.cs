@@ -16,7 +16,8 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconShrinkagePanels.ReadMod
         public bool IsUsed { get; internal set; }
         public int QtyPacking { get; internal set; }
         public string UomUnit { get; internal set; }
-
+        public double NettWeight { get; internal set; }
+        public double GrossWeight { get; internal set; }
         public virtual List<GarmentServiceSubconShrinkagePanelItemReadModel> GarmentServiceSubconShrinkagePanelItem { get; internal set; }
     }
 }

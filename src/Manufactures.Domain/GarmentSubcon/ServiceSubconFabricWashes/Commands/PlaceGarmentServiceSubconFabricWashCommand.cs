@@ -16,6 +16,8 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconFabricWashes.Commands
         public bool IsUsed { get; set; }
         public int QtyPacking { get; set; }
         public string UomUnit { get; set; }
+        public double NettWeight { get; set; }
+        public double GrossWeight { get; set; }
         public List<GarmentServiceSubconFabricWashItemValueObject> Items { get; set; }
         public bool IsSave { get; set; }
     }

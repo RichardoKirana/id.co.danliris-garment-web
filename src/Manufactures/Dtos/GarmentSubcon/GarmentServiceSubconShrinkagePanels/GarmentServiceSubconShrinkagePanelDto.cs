@@ -16,6 +16,8 @@ namespace Manufactures.Dtos.GarmentSubcon.GarmentServiceSubconShrinkagePanels
             IsUsed = garmentServiceSubconShrinkagePanelList.IsUsed;
             QtyPacking = garmentServiceSubconShrinkagePanelList.QtyPacking;
             UomUnit = garmentServiceSubconShrinkagePanelList.UomUnit;
+            NettWeight = garmentServiceSubconShrinkagePanelList.NettWeight;
+            GrossWeight = garmentServiceSubconShrinkagePanelList.GrossWeight;
             Items = new List<GarmentServiceSubconShrinkagePanelItemDto>();
         }
 
@@ -26,6 +28,8 @@ namespace Manufactures.Dtos.GarmentSubcon.GarmentServiceSubconShrinkagePanels
         public bool IsUsed { get; set; }
         public int QtyPacking { get; set; }
         public string UomUnit { get; set; }
+        public double NettWeight { get; set; }
+        public double GrossWeight { get; set; }
         public virtual List<GarmentServiceSubconShrinkagePanelItemDto> Items { get; internal set; }
     }
 }

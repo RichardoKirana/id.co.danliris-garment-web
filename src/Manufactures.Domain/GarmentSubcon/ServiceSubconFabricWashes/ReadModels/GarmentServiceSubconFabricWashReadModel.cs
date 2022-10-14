@@ -16,6 +16,8 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconFabricWashes.ReadModels
         public bool IsUsed { get; internal set; }
         public int QtyPacking { get; internal set; }
         public string UomUnit { get; internal set; }
+        public double NettWeight { get; internal set; }
+        public double GrossWeight { get; internal set; }
 
         public virtual List<GarmentServiceSubconFabricWashItemReadModel> GarmentServiceSubconFabricWashItem { get; internal set; }
     }

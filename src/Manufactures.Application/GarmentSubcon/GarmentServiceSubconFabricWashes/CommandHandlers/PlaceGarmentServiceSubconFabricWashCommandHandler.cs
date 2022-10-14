@@ -39,7 +39,9 @@ namespace Manufactures.Application.GarmentSubcon.GarmentServiceSubconFabricWashe
                 request.Remark,
                 request.IsUsed,
                 request.QtyPacking,
-                request.UomUnit
+                request.UomUnit,
+                request.NettWeight,
+                request.GrossWeight
             );
 
             foreach (var item in request.Items)

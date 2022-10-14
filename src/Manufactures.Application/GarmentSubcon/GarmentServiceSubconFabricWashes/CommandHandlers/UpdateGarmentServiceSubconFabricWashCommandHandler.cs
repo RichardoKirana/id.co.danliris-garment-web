@@ -32,10 +32,54 @@ namespace Manufactures.Application.GarmentSubcon.GarmentServiceSubconFabricWashe
         {
             var serviceSubconFabricWash = _garmentServiceSubconFabricWashRepository.Query.Where(o => o.Identity == request.Identity).Select(o => new GarmentServiceSubconFabricWash(o)).Single();
 
+            Dictionary<Guid, double> fabricWashUpdated = new Dictionary<Guid, double>();
+
+            _garmentServiceSubconFabricWashItemRepository.Find(o => o.ServiceSubconFabricWashId == serviceSubconFabricWash.Identity).ForEach(async subconFabricWashItem =>
+            {
+                var item = request.Items.Where(o => o.Id == subconFabricWashItem.Identity).SingleOrDefault();
+
+                if (item == null)
+                {
+                    _garmentServiceSubconFabricWashDetailRepository.Find(i => i.ServiceSubconFabricWashItemId == subconFabricWashItem.Identity).ForEach(async subconFabricWashDetail =>
+                    {
+                        subconFabricWashDetail.Remove();
+                        await _garmentServiceSubconFabricWashDetailRepository.Update(subconFabricWashDetail);
+                    });
+
+                    subconFabricWashItem.Remove();
+                }
+                else
+                {
+                    _garmentServiceSubconFabricWashDetailRepository.Find(i => i.ServiceSubconFabricWashItemId == subconFabricWashItem.Identity).ForEach(async subconFabricWashDetail =>
+                    {
+                        var detail = item.Details.Where(o => o.Id == subconFabricWashDetail.Identity).Single();
+                        if (!detail.IsSave)
+                        {
+                            subconFabricWashDetail.Remove();
+                        }
+                        else
+                        {
+                            subconFabricWashDetail.SetQuantity(detail.Quantity);
+                            subconFabricWashDetail.SetProductRemark(detail.Product.Remark);
+                            subconFabricWashDetail.Modify();
+                        }
+
+                        await _garmentServiceSubconFabricWashDetailRepository.Update(subconFabricWashDetail);
+                    });
+
+                    subconFabricWashItem.Modify();
+                }
+
+                await _garmentServiceSubconFabricWashItemRepository.Update(subconFabricWashItem);
+            });
+
+
             serviceSubconFabricWash.SetServiceSubconFabricWashDate(request.ServiceSubconFabricWashDate.GetValueOrDefault());
             serviceSubconFabricWash.SetRemark(request.Remark);
             serviceSubconFabricWash.SetQtyPacking(request.QtyPacking);
             serviceSubconFabricWash.SetUomUnit(request.UomUnit);
+            serviceSubconFabricWash.SetNettWeight(request.NettWeight);
+            serviceSubconFabricWash.SetGrossWeight(request.GrossWeight);
             serviceSubconFabricWash.Modify();
             var existingItem = _garmentServiceSubconFabricWashItemRepository.Find(o => o.ServiceSubconFabricWashId == serviceSubconFabricWash.Identity);
 

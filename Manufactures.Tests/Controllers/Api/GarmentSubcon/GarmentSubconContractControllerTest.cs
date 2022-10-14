@@ -130,7 +130,6 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
 
                 .ReturnsAsync(new GarmentSubconContract(SubconContractGuid, "", "a ", "", new SupplierId(1), "", "", "", "", "", 1, DateTimeOffset.Now, DateTimeOffset.Now, false,  "", new UomId(1), "", "", DateTimeOffset.Now, 1/*,""*/,1,1));
 
-
             // Act
             var result = await unitUnderTest.Post(It.IsAny<PlaceGarmentSubconContractCommand>());
 
@@ -170,7 +169,6 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
                 .Setup(s => s.Send(It.IsAny<UpdateGarmentSubconContractCommand>(), It.IsAny<CancellationToken>()))
 
                 .ReturnsAsync(new GarmentSubconContract(SubconContractGuid, "", "", "", new SupplierId(1), "", "", "", "", "", 1, DateTimeOffset.Now, DateTimeOffset.Now, false,  "", new UomId(1), "", "", DateTimeOffset.Now, 1/*,""*/,1,1));
-
 
             // Act
             var result = await unitUnderTest.Put(Guid.NewGuid().ToString(), new UpdateGarmentSubconContractCommand());

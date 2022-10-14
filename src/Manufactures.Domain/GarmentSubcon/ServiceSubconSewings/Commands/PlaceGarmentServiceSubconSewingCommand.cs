@@ -18,7 +18,8 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconSewings.Commands
         public Buyer Buyer { get; set; }
         public int QtyPacking { get; set; }
         public string UomUnit { get; set; }
-
+        public double NettWeight { get; set; }
+        public double GrossWeight { get; set; }
 
     }
 
@@ -32,6 +33,8 @@ namespace Manufactures.Domain.GarmentSubcon.ServiceSubconSewings.Commands
             RuleFor(r => r.ServiceSubconSewingDate).NotNull().LessThan(DateTimeOffset.Now).WithMessage("Tanggal Subcon Jasa Sewing Tidak Boleh Lebih dari Hari Ini");
             RuleFor(r => r.Buyer).NotNull();
             RuleFor(r => r.Buyer.Id).NotEmpty().OverridePropertyName("Buyer").When(w => w.Buyer != null);
+            RuleFor(r => r.NettWeight).NotEmpty().WithMessage("Nett Weight tidak boleh kosong!").OverridePropertyName("Nett Weight");
+            RuleFor(r => r.GrossWeight).NotEmpty().WithMessage("Gross Weight tidak boleh kosong!").OverridePropertyName("Gross Weight");
             RuleFor(r => r.Items).NotEmpty().OverridePropertyName("Item");
             RuleFor(r => r.Items).NotEmpty().WithMessage("Item Tidak Boleh Kosong").OverridePropertyName("ItemsCount");
             RuleForEach(r => r.Items).SetValidator(new GarmentServiceSubconSewingItemValueObjectValidator());

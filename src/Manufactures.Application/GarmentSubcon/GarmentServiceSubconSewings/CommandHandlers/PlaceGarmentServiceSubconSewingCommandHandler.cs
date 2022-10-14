@@ -51,7 +51,9 @@ namespace Manufactures.Application.GarmentSubcon.GarmentServiceSubconSewings.Com
                 request.Buyer.Code,
                 request.Buyer.Name,
                 request.QtyPacking,
-                request.UomUnit
+                request.UomUnit,
+                request.NettWeight,
+                request.GrossWeight
             );
 
             foreach (var item in request.Items)

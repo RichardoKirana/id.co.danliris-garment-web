@@ -60,6 +60,8 @@ namespace Manufactures.Tests.Validations.GarmentSubcon.GarmentServiceSubconSewin
                     Code = "Code",
                     Name = "Name"
                 },
+                NettWeight = 1,
+                GrossWeight = 1,
                 Items = new List<GarmentServiceSubconSewingItemValueObject>()
                 {
                     new GarmentServiceSubconSewingItemValueObject()
