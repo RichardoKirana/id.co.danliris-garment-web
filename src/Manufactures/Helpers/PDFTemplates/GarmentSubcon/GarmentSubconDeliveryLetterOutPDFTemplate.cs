@@ -88,9 +88,9 @@ namespace Manufactures.Helpers.PDFTemplates.GarmentSubcon
             if (garmentSubconDLOut.SubconCategory == "SUBCON JASA GARMENT WASH")
             {
                 PdfPTable tableContent = new PdfPTable(9);
-                tableContent.SetWidths(new float[] { 1.5f, 3f, 3f, 3f, 3f, /*3f,*/ 2.5f, 2.5f, 2.5f, 2.5f });
+				tableContent.SetWidths(new float[] { 1.5f, 3f, 3f, 3f, 3f, /*3f,*/ 2.5f, 2.5f, 2.5f, 2.5f });
 
-                cellCenter.Phrase = new Phrase("No", bold_font);
+				cellCenter.Phrase = new Phrase("No", bold_font);
                 tableContent.AddCell(cellCenter);
                 cellCenter.Phrase = new Phrase("Packing List", bold_font);
                 tableContent.AddCell(cellCenter);
@@ -128,9 +128,9 @@ namespace Manufactures.Helpers.PDFTemplates.GarmentSubcon
                         if (cols > 0)
                         {
                             cellCenter.Phrase = new Phrase((indexItem + 1).ToString(), normal_font);
-                            cellCenter.Rowspan = cols;
-                            cellCenter.VerticalAlignment = Element.ALIGN_TOP;
-                            tableContent.AddCell(cellCenter);
+							//cellCenter.Rowspan = cols;
+							cellCenter.VerticalAlignment = Element.ALIGN_TOP;
+							tableContent.AddCell(cellCenter);
                             indexItem++;
 
                             cellLeft.Phrase = new Phrase("GARMENT WASH", normal_font);
