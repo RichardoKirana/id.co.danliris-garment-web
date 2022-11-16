@@ -197,63 +197,63 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
             Assert.Equal((int)HttpStatusCode.OK, GetStatusCode(result));
         }
 
-        [Fact]
-        public async Task GetComplete_Return_Success()
-        {
-            var unitUnderTest = CreateGarmentServiceSubconShrinkagePanelController();
-            Guid id = Guid.NewGuid();
-            _mockGarmentServiceSubconShrinkagePanelRepository
-              .Setup(s => s.Read(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
-              .Returns(new List<GarmentServiceSubconShrinkagePanelReadModel>().AsQueryable());
+        //[Fact]
+        //public async Task GetComplete_Return_Success()
+        //{
+        //    var unitUnderTest = CreateGarmentServiceSubconShrinkagePanelController();
+        //    Guid id = Guid.NewGuid();
+        //    _mockGarmentServiceSubconShrinkagePanelRepository
+        //      .Setup(s => s.Read(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+        //      .Returns(new List<GarmentServiceSubconShrinkagePanelReadModel>().AsQueryable());
 
-            _mockGarmentServiceSubconShrinkagePanelRepository
-                .Setup(s => s.Find(It.IsAny<IQueryable<GarmentServiceSubconShrinkagePanelReadModel>>()))
-                .Returns(new List<GarmentServiceSubconShrinkagePanel>()
-                {
-                    new GarmentServiceSubconShrinkagePanel(id, null, DateTimeOffset.Now,null, false, 0, null, 0, 0)
-                });
+        //    _mockGarmentServiceSubconShrinkagePanelRepository
+        //        .Setup(s => s.Find(It.IsAny<IQueryable<GarmentServiceSubconShrinkagePanelReadModel>>()))
+        //        .Returns(new List<GarmentServiceSubconShrinkagePanel>()
+        //        {
+        //            new GarmentServiceSubconShrinkagePanel(id, null, DateTimeOffset.Now,null, false, 0, null, 0, 0)
+        //        });
 
-            GarmentServiceSubconShrinkagePanelItem garmentServiceSubconShrinkagePanelItem = new GarmentServiceSubconShrinkagePanelItem(id, id, null, DateTimeOffset.Now, new UnitSenderId(1), null, null, new UnitRequestId(1), null, null);
-            GarmentServiceSubconShrinkagePanelDetail garmentServiceSubconShrinkagePanelDetail = new GarmentServiceSubconShrinkagePanelDetail(new Guid(), new Guid(), new ProductId(1), null, null, null, "ColorD", 1, new UomId(1), null);
+        //    GarmentServiceSubconShrinkagePanelItem garmentServiceSubconShrinkagePanelItem = new GarmentServiceSubconShrinkagePanelItem(id, id, null, DateTimeOffset.Now, new UnitSenderId(1), null, null, new UnitRequestId(1), null, null);
+        //    GarmentServiceSubconShrinkagePanelDetail garmentServiceSubconShrinkagePanelDetail = new GarmentServiceSubconShrinkagePanelDetail(new Guid(), new Guid(), new ProductId(1), null, null, null, "ColorD", 1, new UomId(1), null);
             
-            _mockGarmentServiceSubconShrinkagePanelItemRepository
-                .Setup(s => s.Query)
-                .Returns(new List<GarmentServiceSubconShrinkagePanelItemReadModel>()
-                {
-                    garmentServiceSubconShrinkagePanelItem.GetReadModel()
-                }.AsQueryable());
+        //    _mockGarmentServiceSubconShrinkagePanelItemRepository
+        //        .Setup(s => s.Query)
+        //        .Returns(new List<GarmentServiceSubconShrinkagePanelItemReadModel>()
+        //        {
+        //            garmentServiceSubconShrinkagePanelItem.GetReadModel()
+        //        }.AsQueryable());
 
-            _mockServiceSubconShrinkagePanelDetailRepository
-                .Setup(s => s.Query)
-                .Returns(new List<GarmentServiceSubconShrinkagePanelDetailReadModel>() {
-                    garmentServiceSubconShrinkagePanelDetail.GetReadModel()
-                }.AsQueryable());
+        //    _mockServiceSubconShrinkagePanelDetailRepository
+        //        .Setup(s => s.Query)
+        //        .Returns(new List<GarmentServiceSubconShrinkagePanelDetailReadModel>() {
+        //            garmentServiceSubconShrinkagePanelDetail.GetReadModel()
+        //        }.AsQueryable());
 
-            _mockGarmentServiceSubconShrinkagePanelItemRepository
-                .Setup(s => s.Find(It.IsAny<IQueryable<GarmentServiceSubconShrinkagePanelItemReadModel>>()))
-                .Returns(new List<GarmentServiceSubconShrinkagePanelItem>()
-                {
-                    new GarmentServiceSubconShrinkagePanelItem(id, id,  null, DateTimeOffset.Now,new UnitSenderId(1),null,null, new UnitRequestId(1), null, null)
-                });
-            _mockServiceSubconShrinkagePanelDetailRepository
-                .Setup(s => s.Find(It.IsAny<IQueryable<GarmentServiceSubconShrinkagePanelDetailReadModel>>()))
-                .Returns(new List<GarmentServiceSubconShrinkagePanelDetail>()
-                {
-                    new GarmentServiceSubconShrinkagePanelDetail(id, id, new ProductId(1), null, null, null, "ColorD", 1, new UomId(1), null)
-                });
+        //    _mockGarmentServiceSubconShrinkagePanelItemRepository
+        //        .Setup(s => s.Find(It.IsAny<IQueryable<GarmentServiceSubconShrinkagePanelItemReadModel>>()))
+        //        .Returns(new List<GarmentServiceSubconShrinkagePanelItem>()
+        //        {
+        //            new GarmentServiceSubconShrinkagePanelItem(id, id,  null, DateTimeOffset.Now,new UnitSenderId(1),null,null, new UnitRequestId(1), null, null)
+        //        });
+        //    _mockServiceSubconShrinkagePanelDetailRepository
+        //        .Setup(s => s.Find(It.IsAny<IQueryable<GarmentServiceSubconShrinkagePanelDetailReadModel>>()))
+        //        .Returns(new List<GarmentServiceSubconShrinkagePanelDetail>()
+        //        {
+        //            new GarmentServiceSubconShrinkagePanelDetail(id, id, new ProductId(1), null, null, null, "ColorD", 1, new UomId(1), null)
+        //        });
 
-            // Act
-            var orderData = new
-            {
-                ServiceSubconShrinkagePanelDate = "desc",
-            };
+        //    // Act
+        //    var orderData = new
+        //    {
+        //        ServiceSubconShrinkagePanelDate = "desc",
+        //    };
 
-            string order = JsonConvert.SerializeObject(orderData);
-            var result = await unitUnderTest.GetComplete(1, 25, order, new List<string>(), "", "{}");
+        //    string order = JsonConvert.SerializeObject(orderData);
+        //    var result = await unitUnderTest.GetComplete(1, 25, order, new List<string>(), "", "{}");
 
-            // Assert
-            GetStatusCode(result).Should().Equals((int)HttpStatusCode.OK);
-        }
+        //    // Assert
+        //    GetStatusCode(result).Should().Equals((int)HttpStatusCode.OK);
+        //}
 
         [Fact]
         public async Task GetXLSBehavior()

@@ -288,71 +288,71 @@ namespace Manufactures.Tests.Controllers.Api.GarmentSubcon
             Assert.Equal((int)HttpStatusCode.OK, GetStatusCode(result));
         }
 
-        [Fact]
-        public async Task GetItem_Return_Success()
-        {
-            Guid ServiceSubconCuttingItemGuid = Guid.NewGuid();
-            Guid ServiceSubconCuttingGuid = Guid.NewGuid();
-            Guid subconCuttingDetailGuid = Guid.NewGuid();
-            var unitUnderTest = CreateGarmentServiceSubconCuttingController();
+        //[Fact]
+        //public async Task GetItem_Return_Success()
+        //{
+        //    Guid ServiceSubconCuttingItemGuid = Guid.NewGuid();
+        //    Guid ServiceSubconCuttingGuid = Guid.NewGuid();
+        //    Guid subconCuttingDetailGuid = Guid.NewGuid();
+        //    var unitUnderTest = CreateGarmentServiceSubconCuttingController();
 
-            _mockGarmentServiceSubconCuttingItemRepository
-              .Setup(s => s.ReadItem(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
-              .Returns(new List<GarmentServiceSubconCuttingItemReadModel>().AsQueryable());
-            _mockGarmentServiceSubconCuttingItemRepository
-                .Setup(s => s.Query)
-                .Returns(new List<GarmentServiceSubconCuttingItemReadModel>()
-                {
-                    new GarmentServiceSubconCuttingItemReadModel(ServiceSubconCuttingItemGuid)
-                }.AsQueryable());
+        //    _mockGarmentServiceSubconCuttingItemRepository
+        //      .Setup(s => s.ReadItem(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+        //      .Returns(new List<GarmentServiceSubconCuttingItemReadModel>().AsQueryable());
+        //    _mockGarmentServiceSubconCuttingItemRepository
+        //        .Setup(s => s.Query)
+        //        .Returns(new List<GarmentServiceSubconCuttingItemReadModel>()
+        //        {
+        //            new GarmentServiceSubconCuttingItemReadModel(ServiceSubconCuttingItemGuid)
+        //        }.AsQueryable());
 
-            _mockGarmentServiceSubconCuttingItemRepository
-                .Setup(s => s.Find(It.IsAny<IQueryable<GarmentServiceSubconCuttingItemReadModel>>()))
-                .Returns(new List<GarmentServiceSubconCuttingItem>()
-                {
-                    new GarmentServiceSubconCuttingItem(ServiceSubconCuttingItemGuid, ServiceSubconCuttingGuid,null,null,new GarmentComodityId(1),null,null)
-                });
+        //    _mockGarmentServiceSubconCuttingItemRepository
+        //        .Setup(s => s.Find(It.IsAny<IQueryable<GarmentServiceSubconCuttingItemReadModel>>()))
+        //        .Returns(new List<GarmentServiceSubconCuttingItem>()
+        //        {
+        //            new GarmentServiceSubconCuttingItem(ServiceSubconCuttingItemGuid, ServiceSubconCuttingGuid,null,null,new GarmentComodityId(1),null,null)
+        //        });
 
-            _mockGarmentServiceSubconCuttingDetailRepository
-                .Setup(s => s.Query)
-                .Returns(new List<GarmentServiceSubconCuttingDetailReadModel>()
-                {
-                    new GarmentServiceSubconCuttingDetailReadModel(subconCuttingDetailGuid)
-                }.AsQueryable());
+        //    _mockGarmentServiceSubconCuttingDetailRepository
+        //        .Setup(s => s.Query)
+        //        .Returns(new List<GarmentServiceSubconCuttingDetailReadModel>()
+        //        {
+        //            new GarmentServiceSubconCuttingDetailReadModel(subconCuttingDetailGuid)
+        //        }.AsQueryable());
 
-            _mockGarmentServiceSubconCuttingDetailRepository
-                .Setup(s => s.Find(It.IsAny<IQueryable<GarmentServiceSubconCuttingDetailReadModel>>()))
-                .Returns(new List<GarmentServiceSubconCuttingDetail>()
-                {
-                    new GarmentServiceSubconCuttingDetail(subconCuttingDetailGuid, ServiceSubconCuttingItemGuid,"",1)
-                });
+        //    _mockGarmentServiceSubconCuttingDetailRepository
+        //        .Setup(s => s.Find(It.IsAny<IQueryable<GarmentServiceSubconCuttingDetailReadModel>>()))
+        //        .Returns(new List<GarmentServiceSubconCuttingDetail>()
+        //        {
+        //            new GarmentServiceSubconCuttingDetail(subconCuttingDetailGuid, ServiceSubconCuttingItemGuid,"",1)
+        //        });
 
-            _mockGarmentServiceSubconCuttingSizeRepository
-                .Setup(s => s.Query)
-                .Returns(new List<GarmentServiceSubconCuttingSizeReadModel>()
-                {
-                    new GarmentServiceSubconCuttingSizeReadModel(Guid.NewGuid())
-                }.AsQueryable());
+        //    _mockGarmentServiceSubconCuttingSizeRepository
+        //        .Setup(s => s.Query)
+        //        .Returns(new List<GarmentServiceSubconCuttingSizeReadModel>()
+        //        {
+        //            new GarmentServiceSubconCuttingSizeReadModel(Guid.NewGuid())
+        //        }.AsQueryable());
 
-            _mockGarmentServiceSubconCuttingSizeRepository
-                .Setup(s => s.Find(It.IsAny<IQueryable<GarmentServiceSubconCuttingSizeReadModel>>()))
-                .Returns(new List<GarmentServiceSubconCuttingSize>()
-                {
-                    new GarmentServiceSubconCuttingSize(Guid.NewGuid(), new SizeId(1),null,1,new UomId(1),null,null,subconCuttingDetailGuid,Guid.NewGuid(),Guid.NewGuid(),new ProductId(1),null,null)
-                });
+        //    _mockGarmentServiceSubconCuttingSizeRepository
+        //        .Setup(s => s.Find(It.IsAny<IQueryable<GarmentServiceSubconCuttingSizeReadModel>>()))
+        //        .Returns(new List<GarmentServiceSubconCuttingSize>()
+        //        {
+        //            new GarmentServiceSubconCuttingSize(Guid.NewGuid(), new SizeId(1),null,1,new UomId(1),null,null,subconCuttingDetailGuid,Guid.NewGuid(),Guid.NewGuid(),new ProductId(1),null,null)
+        //        });
 
-            // Act
-            var orderData = new
-            {
-                Id = "desc",
-            };
+        //    // Act
+        //    var orderData = new
+        //    {
+        //        Id = "desc",
+        //    };
 
-            string order = JsonConvert.SerializeObject(orderData);
-            var result = await unitUnderTest.GetItems(1, 25, order, new List<string>(), "", "{}");
+        //    string order = JsonConvert.SerializeObject(orderData);
+        //    var result = await unitUnderTest.GetItems(1, 25, order, new List<string>(), "", "{}");
 
-            // Assert
-            GetStatusCode(result).Should().Equals((int)HttpStatusCode.OK);
-        }
+        //    // Assert
+        //    GetStatusCode(result).Should().Equals((int)HttpStatusCode.OK);
+        //}
         //
         [Fact]
         public async Task GetXLSubconCuttingBehavior()
